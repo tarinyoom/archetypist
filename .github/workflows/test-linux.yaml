@@ -29,4 +29,6 @@ jobs:
 
       # Run the tests
       - name: Run tests
+        env:
+          COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}
         run: npm test

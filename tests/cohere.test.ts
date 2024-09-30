@@ -5,7 +5,7 @@ describe('Cohere API basic check', () => {
         const embedding = await getEmbedding('hello');
 
         // Expect embedding to have certain size
-        const expectedSize = 4096;
+        const expectedSize = 1024;
         expect(embedding.length).toBe(expectedSize);
 
         // Expect embedding to be nontrivial

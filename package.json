@@ -21,6 +21,16 @@
       "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.tsx?$",
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
+  "dependencies": {
+    "cohere-ai": "^7.14.0"
   }
 }

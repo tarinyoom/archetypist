@@ -1,4 +1,4 @@
-import { research_compendium } from "../lib/research";
+import { researchCompendium } from "../lib/research";
 import { Compendium, Known, Element } from "../lib/types";
 
 describe('research_compendium', () => {
@@ -16,7 +16,7 @@ describe('research_compendium', () => {
             ]
         };
 
-        const result = await research_compendium(input);
+        const result = await researchCompendium(input);
 
         const isValidEvaluation = (evaluation: number[]): boolean => {
             return evaluation.length > 0 && Math.max(...evaluation) > Math.min(...evaluation);

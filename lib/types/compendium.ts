@@ -1,5 +1,5 @@
-export type Compendium = {
-    people: Element[];
-    places: Element[];
-    energies: Element[];
+export type Compendium<T> = {
+    people: T[];
+    places: T[];
+    energies: T[];
 };

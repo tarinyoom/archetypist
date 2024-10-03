@@ -1,7 +1,6 @@
-import { research_compendium } from '../lib/research';
-import { Compendium } from "../lib/types/compendium";
-import { Element } from "../lib/types/element";
-import { Known } from "../lib/types/known";
+import { research_compendium } from "../lib/research";
+import { Compendium, Known, Element } from "../lib/types";
+
 
 describe('research_compendium', () => {
     it('should map a Compendium<Element> to a Compendium<Known<Element>>', () => {

@@ -1,6 +1,4 @@
-import { Compendium } from "./types/compendium";
-import { Element } from "./types/element";
-import { Known } from "./types/known";
+import { Compendium, Known, Element } from "./types";
 
 function research_element(element: Element): number[] {
     return [1, 1, 1];

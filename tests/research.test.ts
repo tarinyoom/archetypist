@@ -1,4 +1,4 @@
-import { researchCompendium, researchFragments } from "../lib/research";
+import { researchCompendium, assessFragments } from "../lib/research";
 import { Compendium, Known, Element } from "../lib/types";
 
 describe('researchCompendium', () => {
@@ -60,7 +60,7 @@ describe('researchFragments', () => {
               energies: [ 0.2748547093762384 ]
             }
         ];
-        const results = await researchFragments(fragments, compendium);
+        const results = await assessFragments(fragments, compendium);
         expect(results).toEqual(expected);
     });
 });

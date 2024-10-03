@@ -1,9 +1,8 @@
 import { research_compendium } from "../lib/research";
 import { Compendium, Known, Element } from "../lib/types";
 
-
 describe('research_compendium', () => {
-    it('should map a Compendium<Element> to a Compendium<Known<Element>>', () => {
+    it('should map a Compendium<Element> to a Compendium<Known<Element>>', async () => {
         const input: Compendium<Element> = {
             people: [
                 { name: 'Alice', description: 'A curious explorer' },
@@ -17,19 +16,17 @@ describe('research_compendium', () => {
             ]
         };
 
-        const result = research_compendium(input);
-        const expected: Compendium<Known<Element>> = {
-            people: [
-                { thing: { name: 'Alice', description: 'A curious explorer' }, evaluation: [1, 1, 1] },
-                { thing: { name: 'Bob', description: 'A brave knight' }, evaluation: [1, 1, 1] }
-            ],
-            places: [
-                { thing: { name: 'Wonderland', description: 'A mysterious place' }, evaluation: [1, 1, 1] }
-            ],
-            energies: [
-                { thing: { name: 'Curiosity', description: 'A driving force of discovery' }, evaluation: [1, 1, 1] }
-            ]
+        const result = await research_compendium(input);
+
+        const isValidEvaluation = (evaluation: number[]): boolean => {
+            return evaluation.length > 0 && Math.max(...evaluation) > Math.min(...evaluation);
         };
-        expect(result).toEqual(expected);
+
+        const categories: Array<keyof Compendium<Known<Element>>> = ['people', 'places', 'energies'];
+        categories.forEach(category => {
+            result[category].forEach(item => {
+                expect(isValidEvaluation(item.evaluation)).toBe(true);
+            });
+        });
     });
 });

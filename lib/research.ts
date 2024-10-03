@@ -1,20 +1,18 @@
+import { getEmbeddings } from "./embed";
 import { Compendium, Known, Element } from "./types";
 
-function research_element(element: Element): number[] {
-    return [1, 1, 1];
-}
-
-function research_elements(elements: Element[]): Known<Element>[] {
-    return elements.map(element => ({
+async function research_elements(elements: Element[]): Promise<Known<Element>[]> {
+    const evaluations = await getEmbeddings(elements.map(element => element.description));
+    return elements.map((element, i) => ({
         thing: element,
-        evaluation: research_element(element)
+        evaluation: evaluations[i]
     }));
 }
 
-export function research_compendium(compendium: Compendium<Element>): Compendium<Known<Element>> {
+export async function research_compendium(compendium: Compendium<Element>): Promise<Compendium<Known<Element>>> {
     return {
-        people: research_elements(compendium.people),
-        places: research_elements(compendium.places),
-        energies: research_elements(compendium.energies)
+        people: await research_elements(compendium.people),
+        places: await research_elements(compendium.places),
+        energies: await research_elements(compendium.energies)
     };
 }

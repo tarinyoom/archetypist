@@ -1,4 +1,4 @@
-import { getEmbedding, getEmbeddings } from '../lib/cohere';
+import { getEmbedding, getEmbeddings } from '../lib/embed';
 
 describe('Cohere API basic check', () => {
     test('getEmbedding should return an embedding of correct size with non-trivial values', async () => {

@@ -25,7 +25,9 @@ function cosineSimilarity(u: number[], v: number[]): number {
 }
 
 function findSimilarities(evaluation: number[], known_elements: Known<Element>[]): number[] {
-    return known_elements.map((known) => cosineSimilarity(evaluation, known.evaluation));
+    const unweighted = known_elements.map((known) => cosineSimilarity(evaluation, known.evaluation));
+    const total = unweighted.reduce((acc, value) => acc + value, 0);
+    return unweighted.map((value) => value / total);
 }
 
 function assessFragment(fragment_evaluation: number[], compendium: Compendium<Known<Element>>): Compendium<number> {

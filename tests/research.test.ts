@@ -50,14 +50,14 @@ describe('researchFragments', () => {
         const fragments = ["A castle defender", "An unusual location"];
         const expected = [
             {
-              people: [ 0.3421156141056243, 0.5600986709170759 ],
-              places: [ 0.23284184274063052 ],
-              energies: [ 0.27604478784887665 ]
+              people: [ 0.3791955190523463, 0.6208044809476537 ],
+              places: [ 1 ],
+              energies: [ 1 ]
             },
             {
-              people: [ 0.4691948120370026, 0.2808420429475319 ],
-              places: [ 0.69290434627908 ],
-              energies: [ 0.2748547093762384 ]
+              people: [ 0.6255623425953879, 0.3744376574046122 ],
+              places: [ 1 ],
+              energies: [ 1 ]
             }
         ];
         const results = await assessFragments(fragments, compendium);

@@ -11,8 +11,6 @@ const cohere = new CohereClientV2({
 });
 
 async function getEmbeddings(inputs: string[]): Promise<number[][]> {
-
-    // Safeguards for limits defined in cohere API reference
     if (inputs.length > 96) {
         throw new Error("Too many inputs: a maximum of 96 input strings are allowed.");
     }
@@ -24,28 +22,22 @@ async function getEmbeddings(inputs: string[]): Promise<number[][]> {
     }
 
     const response = await cohere.embed({
-        texts: inputs, // Embedding expects an array of strings
+        texts: inputs,
         model: "embed-english-v3.0",
         inputType: "classification",
         embeddingTypes: ["float"]
     });
 
-    // Safely access the embeddings
-    const embeddings = response.embeddings?.float; // Use optional chaining
-
-    // Check if embeddings is an array and contains elements
+    const embeddings = response.embeddings?.float;
     if (Array.isArray(embeddings) && embeddings.length > 0) {
-        return embeddings; // Return all embeddings
+        return embeddings;
     } else {
         throw new Error("Failed to get embeddings.");
     }
 }
 
 async function getEmbedding(input: string): Promise<number[]> {
-    // Call getEmbeddings with a single string wrapped in an array
     const embeddings = await getEmbeddings([input]);
-    
-    // Return the first embedding
     return embeddings[0];
 }
 

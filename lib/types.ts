@@ -1,8 +1,10 @@
-export type Compendium<T> = {
-    people: T[];
-    places: T[];
-    energies: T[];
-};
+export type Vector<T> = {
+    people: T;
+    places: T;
+    energies: T;
+}
+
+export type Compendium<T> = Vector<T[]>;
 
 export type Element = {
     name: string;

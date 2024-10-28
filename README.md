@@ -55,13 +55,9 @@ Below is and example of five archetypal fragments, for a medieval village, bustl
 ```js
 [
     "Nestled among rolling hills, the quaint medieval village is a charming tableau of thatched-roof cottages, winding cobblestone paths, and colorful flower gardens, with villagers bustling about in traditional attire as the sun sets behind the ancient stone church.",
-    
     "Towering over a sprawling urban landscape, the bustling metropolis is a vibrant mix of glass skyscrapers, crowded streets filled with taxis and pedestrians, and a cacophony of sounds from street vendors and the distant hum of subway trains, all illuminated by the glow of neon lights.",
-    
     "Perched on a scenic cliff overlooking the azure sea, the coastal town is a picturesque haven of pastel-colored homes, quaint fishing boats bobbing in the harbor, and sandy beaches, where the salty breeze carries the laughter of children and the scent of fresh seafood from nearby restaurants.",
-    
     "Tucked away from the hustle and bustle, the quiet suburban neighborhood is a peaceful retreat of tree-lined streets, manicured lawns, and cozy single-family homes, where children ride bicycles and neighbors chat over white picket fences, creating a sense of community and belonging.",
-    
     "Rich in heritage, the historical city is a tapestry of cobblestone streets, grandiose cathedrals, and centuries-old buildings, with every corner revealing stories of the past, as tourists wander through bustling squares filled with street performers and local artisans showcasing their crafts."
 ]
 ```

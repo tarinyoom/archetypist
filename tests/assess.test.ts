@@ -9,8 +9,8 @@ const cityReferenceFragments =
     "Rich in heritage, the historical city is a tapestry of cobblestone streets, grandiose cathedrals, and centuries-old buildings, with every corner revealing stories of the past, as tourists wander through bustling squares filled with street performers and local artisans showcasing their crafts."
 ]
 
-describe('assess city', () => {
-    it('should assess the entropy of a archetypical city description', async () => {
+describe('full assessments', () => {
+    test('archetypical city description', async () => {
         const inputFragments = [
             "towering over crowded avenues",
             "bustling metropolis",
@@ -22,10 +22,8 @@ describe('assess city', () => {
 
         expect(result).toBeCloseTo(2.2751880989733437);
     });
-});
 
-describe('assess village', () => {
-    it('should assess the entropy of a archetypical village description', async () => {
+    test('archetypical village description', async () => {
         const inputFragments = [
             "nestled in a lush valley", 
             "quaint village",
@@ -37,10 +35,8 @@ describe('assess village', () => {
 
         expect(result).toBeCloseTo(2.2903850031318114);
     });
-});
 
-describe('assess mixed description', () => {
-    it('should assess the entropy of a mixed city description', async () => {
+    test('mixed city description', async () => {
         const inputFragments = [
             "nestled in a lush valley",
             "the bustling metropolis",

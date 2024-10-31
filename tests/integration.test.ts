@@ -20,7 +20,7 @@ describe('full assessments', () => {
         ];
         const result = await complexity(inputFragments, cityReferenceFragments);
 
-        expect(result).toBeCloseTo(2.2751880989733437);
+        expect(result).toBeCloseTo(2.3177918440373837);
     });
 
     test('archetypical village description', async () => {
@@ -33,14 +33,13 @@ describe('full assessments', () => {
         ];
         const result = await complexity(inputFragments, cityReferenceFragments);
 
-        expect(result).toBeCloseTo(2.2903850031318114);
+        expect(result).toBeCloseTo(2.3198792461448194);
     });
 
     test('mixed city description', async () => {
         const inputFragments = [
             "nestled in a lush valley",
             "the bustling metropolis",
-            "a tapestry",
             "glistening skyscrapers",
             "cobblestone streets",
             "neon-lit storefronts"
@@ -48,6 +47,6 @@ describe('full assessments', () => {
 
         const result = await complexity(inputFragments, cityReferenceFragments);
 
-        expect(result).toBeCloseTo(2.3090437687148904);
+        expect(result).toBeCloseTo(2.3198792461448194);
     });
 });

@@ -1,5 +1,5 @@
 {
-  "name": "assessor",
+  "name": "archetypist",
   "version": "1.0.0",
   "description": "For assessing the qualities of a snippet of lore, in-context.",
   "main": "index.js",

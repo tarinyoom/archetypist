@@ -1,4 +1,4 @@
-# Assessor
+# Archetypist
 For assessing the complexity of a text description of a person or place, based on archetypal consistency.
 This tool can then be used to estimate the conceptual burden that the description will place on the reader.
 

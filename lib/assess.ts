@@ -15,6 +15,5 @@ export async function assess(inputFragments: string[], referenceFragments: strin
     });
 
     const entropy = calculateEntropy(rowMeans);
-    console.log(entropy);
     return entropy;
 }

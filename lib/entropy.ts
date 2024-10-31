@@ -10,3 +10,12 @@ export function calculateEntropy(distribution: number[]): number {
         return accumulator + (probability > 0 ? probability * Math.log2(probability) : 0);
     }, 0);   
 }
+
+export function softMax(distribution: number[]): number[] {
+    const max = Math.max(...distribution); // Find max to prevent overflow
+    const expValues = distribution.map(value => Math.exp(value - max));
+
+    const sumExpValues = expValues.reduce((sum, value) => sum + value, 0);
+
+    return expValues.map(value => value / sumExpValues);
+}

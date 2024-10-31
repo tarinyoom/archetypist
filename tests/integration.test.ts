@@ -1,4 +1,4 @@
-import { assess } from "../lib/assess";
+import { complexity } from "../lib/index";
 
 const cityReferenceFragments =
 [
@@ -18,7 +18,7 @@ describe('full assessments', () => {
             "neon-lit storefronts", 
             "sleek steel bridges."
         ];
-        const result = await assess(inputFragments, cityReferenceFragments);
+        const result = await complexity(inputFragments, cityReferenceFragments);
 
         expect(result).toBeCloseTo(2.2751880989733437);
     });
@@ -31,7 +31,7 @@ describe('full assessments', () => {
             "timber-framed cottages",
             "ivy-covered stone walls"
         ];
-        const result = await assess(inputFragments, cityReferenceFragments);
+        const result = await complexity(inputFragments, cityReferenceFragments);
 
         expect(result).toBeCloseTo(2.2903850031318114);
     });
@@ -46,7 +46,7 @@ describe('full assessments', () => {
             "neon-lit storefronts"
         ];
 
-        const result = await assess(inputFragments, cityReferenceFragments);
+        const result = await complexity(inputFragments, cityReferenceFragments);
 
         expect(result).toBeCloseTo(2.3090437687148904);
     });

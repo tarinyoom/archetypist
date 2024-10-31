@@ -2,7 +2,7 @@ import { getEmbeddings } from "./embed";
 import { compare } from "./compare";
 import { calculateEntropy } from "./entropy";
 
-export async function assess(inputFragments: string[], referenceFragments: string[]) {
+export async function complexity(inputFragments: string[], referenceFragments: string[]) {
 
     const inputEmbeddings = await getEmbeddings(inputFragments);
     const referenceEmbeddings = await getEmbeddings(referenceFragments);    

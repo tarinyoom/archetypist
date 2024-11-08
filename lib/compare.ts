@@ -21,8 +21,10 @@ function cosineSimilarity(u: number[], v: number[]): number {
     return dotProduct / denominator;
 }
 
+// Each row contains similarities for a given input embedding
+// Each column contains similarities for a given reference embedding
 export function compare(inputEmbeddings: number[][], referenceEmbeddings: number[][]): number[][] {
-    return referenceEmbeddings.map(u => 
-        inputEmbeddings.map(v => cosineSimilarity(u, v))
+    return inputEmbeddings.map(u =>
+        referenceEmbeddings.map(v => cosineSimilarity(u, v))
     );
 }

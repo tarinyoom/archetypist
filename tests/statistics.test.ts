@@ -1,5 +1,5 @@
-import { softMax } from "../lib/entropy";
-import { klDivergence } from "../lib/entropy";
+import { softMax } from "../lib/statistics";
+import { klDivergence } from "../lib/statistics";
 
 describe('klDivergence', () => {
     test('calculates KL divergence between two simple distributions', () => {

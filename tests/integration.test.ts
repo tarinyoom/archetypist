@@ -1,4 +1,4 @@
-import { complexity } from "../lib/index";
+import { getDivergenceSignal } from "../lib/index";
 
 const cityReferenceFragments =
 [
@@ -18,7 +18,7 @@ describe('full assessments', () => {
             "neon-lit storefronts", 
             "sleek steel bridges."
         ];
-        const result = await complexity(inputFragments, cityReferenceFragments);
+        const result = await getDivergenceSignal(inputFragments, cityReferenceFragments);
         const expected = [0.00006709122213582582, 0.00010558620562956715, 0.0018691967931962917, 0.0020684331812059675];
 
         for (let i = 0; i < result.length; i++) {
@@ -34,7 +34,7 @@ describe('full assessments', () => {
             "timber-framed cottages",
             "ivy-covered stone walls"
         ];
-        const result = await complexity(inputFragments, cityReferenceFragments);
+        const result = await getDivergenceSignal(inputFragments, cityReferenceFragments);
         const expected = [0.002100120408560677, 0.005686793380091173, 0.0033198422877170133, 0.0003113205058277845];
 
         for (let i = 0; i < result.length; i++) {
@@ -51,7 +51,7 @@ describe('full assessments', () => {
             "neon-lit storefronts"
         ];
 
-        const result = await complexity(inputFragments, cityReferenceFragments);
+        const result = await getDivergenceSignal(inputFragments, cityReferenceFragments);
         const expected = [0.018808555567372126, 0.00046212038390891844, 0.011136567510800699, 0.007721062653233267];
 
         for (let i = 0; i < result.length; i++) {

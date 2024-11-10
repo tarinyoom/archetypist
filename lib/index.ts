@@ -2,8 +2,7 @@ import { getEmbeddings } from "./embed";
 import { cosineSimilarity, klDivergence, softMax } from "./statistics";
 import { pairwiseCalculate, pairwiseReduce } from "./functional";
 
-export async function complexity(inputFragments: string[], referenceFragments: string[]) {
-
+async function getFragmentProbabilities(inputFragments: string[], referenceFragments: string[]): Promise<number[][]> {
     const inputEmbeddings = await getEmbeddings(inputFragments);
     const referenceEmbeddings = await getEmbeddings(referenceFragments);    
 
@@ -13,10 +12,17 @@ export async function complexity(inputFragments: string[], referenceFragments: s
     const similarityMatrix = pairwiseCalculate(inputEmbeddings, referenceEmbeddings, cosineSimilarity);
 
     // Calculate softmax of each row to find probability distribution for each input embedding
-    const softMaxxed = similarityMatrix.map(softMax);
+    const probabilities = similarityMatrix.map(softMax);
+
+    return probabilities;
+}
+
+export async function getDivergenceSignal(inputFragments: string[], referenceFragments: string[]): Promise<number[]> {
+
+    const probabilities = await getFragmentProbabilities(inputFragments, referenceFragments);
 
     // Calculate divergences of each adjacent pair of input embeddings to compute divergence signal
-    const divergences = pairwiseReduce(softMaxxed, klDivergence);
+    const divergenceSignal = pairwiseReduce(probabilities, klDivergence);
 
-    return divergences;
+    return divergenceSignal;
 }

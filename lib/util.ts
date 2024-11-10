@@ -1,3 +1,15 @@
+export function pairwiseReduce<T>(arr: T[], fn: (a: T, b: T) => T): T[] {
+    if (arr.length < 2) {
+        throw new Error("Array must have at least two elements.");
+    }
+
+    const result: T[] = [];
+    for (let i = 0; i < arr.length - 1; i++) {
+        result.push(fn(arr[i], arr[i + 1]));
+    }
+    return result;
+}
+
 export function applyToMatrixColumns(matrix: number[][], columnFunction: (column: number[]) => number[]): number[][] {
     const numColumns = matrix[0]?.length || 0;
     const columns = Array.from({ length: numColumns }, (_, colIndex) =>

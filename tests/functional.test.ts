@@ -1,4 +1,4 @@
-import { pairwiseReduce, pairwiseCalculate } from "../lib/util";
+import { pairwiseReduce, pairwiseCalculate } from "../lib/functional";
 
 describe('pairwiseReduce', () => {
     test('throws an error if array has fewer than two elements', () => {

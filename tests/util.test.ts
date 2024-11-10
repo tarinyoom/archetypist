@@ -81,7 +81,7 @@ describe('pairwiseCalculate', () => {
 
         const sum = (a: number, b: number): number => a + b;
 
-        expect(() => pairwiseCalculate(arr1, arr2, sum)).toThrowError('Arrays must have the same length.');
+        expect(() => pairwiseCalculate(arr1, arr2, sum)).toThrow('Arrays must have the same length.');
     });
 
     // Test: Edge case with empty arrays

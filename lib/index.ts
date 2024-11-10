@@ -1,6 +1,5 @@
 import { getEmbeddings } from "./embed";
-import { cosineSimilarity } from "./compare";
-import { klDivergence, softMax } from "./statistics";
+import { cosineSimilarity, klDivergence, softMax } from "./statistics";
 import { pairwiseCalculate, pairwiseReduce } from "./util";
 
 export async function complexity(inputFragments: string[], referenceFragments: string[]) {

@@ -1,5 +1,70 @@
-import { softMax } from "../lib/statistics";
-import { klDivergence } from "../lib/statistics";
+import { klDivergence, softMax, cosineSimilarity } from "../lib/statistics";
+
+describe('cosineSimilarity', () => {
+
+    // Test: Basic similarity between two identical vectors
+    test('should return 1 for identical vectors', () => {
+        const u = [1, 2, 3];
+        const v = [1, 2, 3];
+        const result = cosineSimilarity(u, v);
+        expect(result).toBeCloseTo(1, 5);
+    });
+
+    // Test: Cosine similarity of two orthogonal vectors (should be 0)
+    test('should return 0 for orthogonal vectors', () => {
+        const u = [1, 0, 0];
+        const v = [0, 1, 0];
+        const result = cosineSimilarity(u, v);
+        expect(result).toBeCloseTo(0, 5);
+    });
+
+    // Test: Cosine similarity of two opposite vectors (should be -1)
+    test('should return -1 for opposite vectors', () => {
+        const u = [1, 2, 3];
+        const v = [-1, -2, -3];
+        const result = cosineSimilarity(u, v);
+        expect(result).toBeCloseTo(-1, 5);
+    });
+
+    // Test: Cosine similarity with one zero vector (should throw error)
+    test('should throw error for one zero vector', () => {
+        const u = [0, 0, 0];
+        const v = [1, 2, 3];
+        expect(() => cosineSimilarity(u, v)).toThrow("One of the vectors is zero, so cosine similarity is undefined");
+    });
+
+    // Test: Cosine similarity of two random vectors
+    test('should return a value between -1 and 1 for random vectors', () => {
+        const u = [1, 2, 3];
+        const v = [4, 5, 6];
+        const result = cosineSimilarity(u, v);
+        expect(result).toBeGreaterThanOrEqual(-1);
+        expect(result).toBeLessThanOrEqual(1);
+    });
+
+    // Test: Cosine similarity with vectors of different lengths (should throw error)
+    test('should throw error when vectors have different lengths', () => {
+        const u = [1, 2];
+        const v = [1, 2, 3];
+        expect(() => cosineSimilarity(u, v)).toThrow("Vectors must be of the same length");
+    });
+
+    // Test: Cosine similarity of a vector with itself (should be 1)
+    test('should return 1 when both vectors are the same', () => {
+        const u = [3, 4, 5];
+        const result = cosineSimilarity(u, u);
+        expect(result).toBeCloseTo(1, 5);
+    });
+
+    // Test: Cosine similarity of large numbers
+    test('should handle large numbers correctly', () => {
+        const u = [1e6, 2e6, 3e6];
+        const v = [3e6, 2e6, 1e6];
+        const result = cosineSimilarity(u, v);
+        expect(result).toBeCloseTo(5 / 7, 5); // Pre-computed result
+    });
+
+});
 
 describe('klDivergence', () => {
     test('calculates KL divergence between two simple distributions', () => {

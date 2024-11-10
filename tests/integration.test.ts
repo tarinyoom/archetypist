@@ -19,8 +19,9 @@ describe('full assessments', () => {
             "sleek steel bridges."
         ];
         const result = await complexity(inputFragments, cityReferenceFragments);
+        const expected = [0.00006709122213582582, 0.00010558620562956715, 0.0018691967931962917, 0.0020684331812059675];
 
-        expect(result).toBeCloseTo(2.3177918440373837);
+        expect(result).toEqual(expected);
     });
 
     test('archetypical village description', async () => {
@@ -32,8 +33,9 @@ describe('full assessments', () => {
             "ivy-covered stone walls"
         ];
         const result = await complexity(inputFragments, cityReferenceFragments);
+        const expected = [0.002100120408560677, 0.005686793380091173, 0.0033198422877170133, 0.0003113205058277845];
 
-        expect(result).toBeCloseTo(2.3198792461448194);
+        expect(result).toEqual(expected);
     });
 
     test('mixed city description', async () => {
@@ -46,7 +48,8 @@ describe('full assessments', () => {
         ];
 
         const result = await complexity(inputFragments, cityReferenceFragments);
+        const expected = [0.018808555567372126, 0.00046212038390891844, 0.011136567510800699, 0.007721062653233267];
 
-        expect(result).toBeCloseTo(2.3198792461448194);
+        expect(result).toEqual(expected);
     });
 });

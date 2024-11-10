@@ -1,7 +1,7 @@
 import { getEmbeddings } from "./embed";
-import { compare } from "./compare";
+import { cosineSimilarity } from "./compare";
 import { klDivergence, softMax } from "./statistics";
-import { pairwiseReduce } from "./util";
+import { pairwiseCalculate, pairwiseReduce } from "./util";
 
 export async function complexity(inputFragments: string[], referenceFragments: string[]) {
 
@@ -9,7 +9,7 @@ export async function complexity(inputFragments: string[], referenceFragments: s
     const referenceEmbeddings = await getEmbeddings(referenceFragments);    
 
     // rows: input embeddings, columns: reference embeddings
-    const similarityMatrix = compare(inputEmbeddings, referenceEmbeddings);
+    const similarityMatrix = pairwiseCalculate(inputEmbeddings, referenceEmbeddings, cosineSimilarity);
     const softMaxxed = similarityMatrix.map(softMax);
     const divergences = pairwiseReduce(softMaxxed, klDivergence);
 

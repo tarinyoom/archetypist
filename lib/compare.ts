@@ -1,4 +1,4 @@
-function cosineSimilarity(u: number[], v: number[]): number {
+export function cosineSimilarity(u: number[], v: number[]): number {
     if (u.length !== v.length) {
         throw new Error("Vectors must be of the same length");
     }
@@ -19,12 +19,4 @@ function cosineSimilarity(u: number[], v: number[]): number {
     }
 
     return dotProduct / denominator;
-}
-
-// Each row contains similarities for a given input embedding
-// Each column contains similarities for a given reference embedding
-export function compare(inputEmbeddings: number[][], referenceEmbeddings: number[][]): number[][] {
-    return inputEmbeddings.map(u =>
-        referenceEmbeddings.map(v => cosineSimilarity(u, v))
-    );
 }

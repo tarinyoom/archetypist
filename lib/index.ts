@@ -1,7 +1,7 @@
 import { getEmbeddings } from "./embed";
 import { compare } from "./compare";
-import { calculateEntropy, klDivergence, softMax } from "./entropy";
-import { applyToMatrixColumns, pairwiseReduce } from "./util";
+import { klDivergence, softMax } from "./entropy";
+import { pairwiseReduce } from "./util";
 
 export async function complexity(inputFragments: string[], referenceFragments: string[]) {
 

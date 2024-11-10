@@ -1,4 +1,3 @@
-import { applyToMatrixColumns } from "../lib/util";
 import { pairwiseReduce } from "../lib/util";
 
 describe('pairwiseReduce', () => {
@@ -40,29 +39,5 @@ describe('pairwiseReduce', () => {
         const arr = [1, "2", true, null];
         const result = pairwiseReduce(arr, (a, b) => `${a}-${b}`);
         expect(result).toEqual(["1-2", "2-true", "true-null"]); // Combines each pair as a string with "-"
-    });
-});
-
-function maxColumn(column: number[]): number[] {
-    const maxValue = Math.max(...column);
-    return column.map(() => maxValue);
-}
-
-describe('applyToMatrixColumns', () => {
-    it('replaces each column with its maximum value', () => {
-        const matrix = [
-            [1, 2, 3],
-            [4, 5, 6],
-            [7, 8, 9]
-        ];
-        
-        const expectedOutput = [
-            [7, 8, 9],
-            [7, 8, 9],
-            [7, 8, 9]
-        ];
-        
-        const result = applyToMatrixColumns(matrix, maxColumn);
-        expect(result).toEqual(expectedOutput);
     });
 });

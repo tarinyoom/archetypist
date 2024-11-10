@@ -1,4 +1,4 @@
-import { calculateEntropy, softMax } from "../lib/entropy";
+import { softMax } from "../lib/entropy";
 import { klDivergence } from "../lib/entropy";
 
 describe('klDivergence', () => {
@@ -47,29 +47,6 @@ describe('klDivergence', () => {
         expect(() => klDivergence(P, Q)).toThrow("P and Q must only contain non-negative values.");
     });
 });
-
-describe('uniform entropy', () => {
-    it('should calculate the shannon entropy of a uniform array', () => {
-        const distribution = [ 2.0, 2.0, 2.0, 2.0, 2.0 ];
-        const expected = Math.log2(distribution.length);
-        const result = calculateEntropy(distribution);
-
-        expect(result).toBeCloseTo(expected);
-    });
-});
-
-describe('kronecker-delta entropy', () => {
-    it('should calculate the shannon entropy of an array with a single nonzero value', () => {
-        const distribution = [ 5.0, 0.0, 0.0, 0.0, 0.0 ];
-        const expected = 0;
-        const result = calculateEntropy(distribution);
-
-        expect(result).toBeCloseTo(expected);
-    });
-});
-
-// Import the softMax function
-// import { softMax } from './path-to-your-function-file';
 
 describe('softMax', () => {
     it('calculates softmax correctly for a simple distribution', () => {

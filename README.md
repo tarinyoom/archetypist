@@ -68,24 +68,42 @@ This project was developed using the following versions:
 - **Node.js**: 20.17.0
 - **NPM**: 10.8.2
 - **TypeScript**: 5.6.2
+- **Cohere API**: v2
+
+The Cohere API does not need to be installed on your machine, but you will need an API key for accessing its **embed** endpoint.
+You can create an API key using the [Cohere website](https://cohere.com/).
 
 ## Building and Running
 
 To set up the project and run tests:
-1. Install dependencies:
+
+1. Define your Cohere API key:
+ - For **PowerShell**:
+```pwsh
+$env:COHERE_API_KEY=<MY_API_KEY>
+```
+ - For **Bash**:
+```sh
+export COHERE_API_KEY=<MY_API_KEY>
+```
+
+2. Install dependencies:
 ```sh
 npm install
 ```
-2. Run the tests:
+
+3. Run the tests:
 ```sh
 npm test
 ```
 
+These steps are also replicated in the automatic pipelines declared in the `.github/workflows/` directory.
+
 ## Repository Layout
 
-- `lib/`: folder contains implementation for the above methodology, with top level _compare_ and _reduce functions in `lib/index.ts`.
-- `tests/`: folder contains test code against this implementation.
-- `example/`: folder contains a single larger example, which is validated in the `test/example.test.ts` file.
+- `lib/`: Contains implementation for the above methodology, with top level _compare_ and _reduce functions in `lib/index.ts`.
+- `tests/`: Contains test code to validate this implementation.
+- `example/`: Contains a single larger example, validated in the `test/example.test.ts` file.
 
 ## Future Improvements
 

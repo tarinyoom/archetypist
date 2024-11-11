@@ -18,7 +18,8 @@ describe('Cohere API basic check', () => {
 describe('getEmbeddings Safeguards', () => {
     test('should map an empty array to an empty array', async () => {
         const inputs: string[] = []
-        await expect(getEmbeddings(inputs)).toEqual([]);
+        const result = await getEmbeddings(inputs);
+        expect(result).toEqual([]);
     });
 
     test('should throw an error if more than 96 inputs are provided', async () => {

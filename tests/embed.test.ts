@@ -16,6 +16,11 @@ describe('Cohere API basic check', () => {
 });
 
 describe('getEmbeddings Safeguards', () => {
+    test('should map an empty array to an empty array', async () => {
+        const inputs: string[] = []
+        await expect(getEmbeddings(inputs)).toEqual([]);
+    });
+
     test('should throw an error if more than 96 inputs are provided', async () => {
         const inputs = new Array(97).fill("valid input"); // Create an array with 97 valid inputs
         await expect(getEmbeddings(inputs)).rejects.toThrow("Too many inputs: a maximum of 96 input strings are allowed.");

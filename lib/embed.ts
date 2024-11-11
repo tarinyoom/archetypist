@@ -11,6 +11,10 @@ const cohere = new CohereClientV2({
 });
 
 async function getEmbeddings(inputs: string[]): Promise<number[][]> {
+    if (inputs.length == 0) {
+        return [];
+    }
+
     if (inputs.length > 96) {
         throw new Error("Too many inputs: a maximum of 96 input strings are allowed.");
     }

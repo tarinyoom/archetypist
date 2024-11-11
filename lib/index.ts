@@ -26,3 +26,8 @@ export async function getDivergenceSignal(inputFragments: string[], referenceFra
 
     return divergenceSignal;
 }
+
+export async function getTotalDivergence(inputFragments: string[], referenceFragments: string[]): Promise<number> {
+    const signal = await getDivergenceSignal(inputFragments, referenceFragments);
+    return signal.reduce((acc, val) => acc + val, 0) / signal.reduce((acc, _) => acc + 1, 0);
+}

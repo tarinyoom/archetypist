@@ -1,4 +1,4 @@
-import { getDivergenceSignal } from "../lib/index";
+import { getDivergenceSignal, getTotalDivergence } from "../lib/index";
 
 const cityReferenceFragments =
 [
@@ -9,7 +9,7 @@ const cityReferenceFragments =
     "Rich in heritage, the historical city is a tapestry of cobblestone streets, grandiose cathedrals, and centuries-old buildings, with every corner revealing stories of the past, as tourists wander through bustling squares filled with street performers and local artisans showcasing their crafts."
 ]
 
-describe('full assessments', () => {
+describe('divergence signals', () => {
     test('archetypical city description', async () => {
         const inputFragments = [
             "towering over crowded avenues",
@@ -57,5 +57,50 @@ describe('full assessments', () => {
         for (let i = 0; i < result.length; i++) {
             expect(result[i]).toBeCloseTo(expected[i], 8);
         }
+    });
+});
+
+describe('mean divergence', () => {
+    test('archetypical city description', async () => {
+        const inputFragments = [
+            "towering over crowded avenues",
+            "bustling metropolis",
+            "a maze of glistening skyscrapers",
+            "neon-lit storefronts", 
+            "sleek steel bridges."
+        ];
+        const result = await getTotalDivergence(inputFragments, cityReferenceFragments);
+        const expected = 0.001027576850541913;
+
+        expect(result).toBeCloseTo(expected, 5);
+    });
+
+    test('archetypical village description', async () => {
+        const inputFragments = [
+            "nestled in a lush valley", 
+            "quaint village",
+            "cobblestone streets",
+            "timber-framed cottages",
+            "ivy-covered stone walls"
+        ];
+        const result = await getTotalDivergence(inputFragments, cityReferenceFragments);
+        const expected = 0.002854519145549162;
+
+        expect(result).toBeCloseTo(expected, 5);
+    });
+
+    test('mixed city description', async () => {
+        const inputFragments = [
+            "nestled in a lush valley",
+            "the bustling metropolis",
+            "glistening skyscrapers",
+            "cobblestone streets",
+            "neon-lit storefronts"
+        ];
+
+        const result = await getTotalDivergence(inputFragments, cityReferenceFragments);
+        const expected = 0.009532076528828752;
+
+        expect(result).toBeCloseTo(expected, 5);
     });
 });

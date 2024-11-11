@@ -1,26 +1,26 @@
 # Archetypist
 Archetypist is a tool for assessing the narrative complexity of a description.
-The narrative complexity represents how cohesive the ideas within a description are, based on their consistency in following the themes in a set of reference archetypes.
-Descriptions with ideas belonging to many different archetypes are considered to have high narrative complexity, whereas descriptions that focus on an archetype are considered to have low narrative complexity.
+Narrative complexity represents how cohesive the ideas within a description are, based on their consistency in following the themes in a set of reference archetypes.
+Descriptions with ideas belonging to many different archetypes are considered to have high narrative complexity, whereas descriptions that focus on a single archetype are considered to have low narrative complexity.
 
 ## An Example
-As a motivating example, consider the following two location descriptions of a bustling metropolis and a quaint village:
+To motivate the use of Archetypist, consider the following two location descriptions of a bustling metropolis and a quaint village:
 
 > Towering over crowded avenues, the bustling metropolis is a maze of glistening skyscrapers, neon-lit storefronts, and sleek steel bridges.
 
 > Nestled in a lush valley, the quaint village is a tapestry of cobblestone streets, timber-framed cottages, and ivy-covered stone walls.
 
 These are archetypal descriptions of a "bustling metropolis" and a "quaint village", each with details aligned with their respective archetypes.
-Each of these descriptions has low narrative complexity, since each stays within a well-established archetype.
-We could also create a less archetypal description by combining fragments these two archetypal descriptions:
+Each of these descriptions has low narrative complexity, as they stay within well-established archetypes.
+Now, we can create a less archetypal description by combining fragments from these two:
 
 > Nestled in a lush valley, the bustling metropolis is a tapestry of glistening skyscrapers, cobblestone streets, and neon-lit storefronts.
 
-While this is still a logically consistent description, it mixes ideas from multiple archetypes, adding narrative complexity
-So Archetypist should identify the first two sentences as having lower narrative complexity than the third.
+While this is still a logically consistent description, it mixes ideas from multiple archetypes, adding narrative complexity.
+Archetypist should identify the first two descriptions as having lower narrative complexity than the third.
 
 ## Methodology
-The approach consists a **compare** step, and a **reduce** step, as shown below.
+The process consists of two steps: **compare** and **reduce**, as shown below.
 The composition of these steps takes in a set of input fragments, representing the description to be evaluated, and a set of reference fragments, representing archetypes.
 It returns a real value representing the narrative complexity of the description.
 
@@ -43,14 +43,14 @@ flowchart LR
 
 ### Compare
 The **compare** step takes in input fragments and reference fragments, and evaluates their pairwise similarities using the [Cohere embed endpoint](https://cohere.com/embed).
-This endpoint returns the vector embedding of a fragment, so that the similarity of two fragments can be found by taking the cosine similarity of their respective vector embeddings.
-**Compare** takes the [softmax](https://en.wikipedia.org/wiki/Softmax_function) of the similarities for each input fragment, to create a probability distribution for that fragment.
-This probability distribution can be interpreted as, "the probability that this input fragment belongs to X reference archetype".
+This endpoint returns the vector embedding of a fragment, and the similarity of two fragments can be found by calculating the cosine similarity of their respective vector embeddings.
+**Compare** applies the [softmax](https://en.wikipedia.org/wiki/Softmax_function) to the similarities for each input fragment, creating a probability distribution for that fragment.
+This probability distribution can be interpreted as, "the probability that this input fragment belongs to X reference archetype."
 These probabilities are returned as a matrix, whose rows are probability distributions attributed to each input fragment.
 
 ### Reduce
 The **reduce** step takes in a probability matrix and reduces it to a single value, by tracking the behavior of the probability distribution from fragment to fragment.
-It uses [Kullback-Leibler (KL) divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) as a measure of disagreement between probability distributions of two consecutive fragments.
+It uses [Kullback-Leibler (KL) divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) to measure the disagreement between the probability distributions of two consecutive fragments.
 The resulting sequence represents the amount of local narrative complexity over the course of the sentence.
 **Reduce** returns the mean divergence to represent the mean narrative complexity of the sentence.
 
@@ -75,24 +75,24 @@ You can create an API key using the [Cohere website](https://cohere.com/).
 To set up the project and run tests:
 
 1. Define your Cohere API key:
- - For **PowerShell**:
-```pwsh
-$env:COHERE_API_KEY=<MY_API_KEY>
-```
- - For **Bash**:
-```sh
-export COHERE_API_KEY=<MY_API_KEY>
-```
+   - For **PowerShell**:
+   ```pwsh
+   $env:COHERE_API_KEY=<MY_API_KEY>
+   ```
+   - For **Bash**:
+   ```sh
+   export COHERE_API_KEY=<MY_API_KEY>
+   ```
 
 2. Install dependencies:
-```sh
-npm install
-```
+   ```sh
+   npm install
+   ```
 
 3. Run the tests:
-```sh
-npm test
-```
+   ```sh
+   npm test
+   ```
 
 These steps are also replicated in the automatic pipelines declared in the `.github/workflows/` directory.
 

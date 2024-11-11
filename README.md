@@ -20,7 +20,7 @@ While this is still a logically consistent description, it mixes ideas from mult
 So Archetypist should identify the first two sentences as having lower narrative complexity than the third.
 
 ## Methodology
-The approach consists a _compare_ step, and a _reduce_ step, as shown below.
+The approach consists a **compare** step, and a **reduce** step, as shown below.
 The composition of these steps takes in a set of input fragments, representing the description to be evaluated, and a set of reference fragments, representing archetypes.
 It returns a real value representing the narrative complexity of the description.
 
@@ -41,21 +41,21 @@ flowchart LR
     Entropy --> Out
 ```
 
-In the _compare_ step, Archetypist takes in input fragments and reference fragments, representing the input description and reference archetype descriptions, respectively.
+In the **compare** step, Archetypist takes in input fragments and reference fragments, representing the input description and reference archetype descriptions, respectively.
 It then uses the [Cohere embed](https://cohere.com/embed) endpoint to 
 
 ### Compare
-The _compare_ step takes in input fragments and reference fragments, and evaluates their pairwise similarities using the [Cohere embed endpoint](https://cohere.com/embed).
+The **compare** step takes in input fragments and reference fragments, and evaluates their pairwise similarities using the [Cohere embed endpoint](https://cohere.com/embed).
 This endpoint returns the vector embedding of a fragment, so that the similarity of two fragments can be found by taking the cosine similarity of their respective vector embeddings.
-_Compare_ takes the [softmax](https://en.wikipedia.org/wiki/Softmax_function) of the similarities for each input fragment, to create a probability distribution for that fragment.
+**Compare** takes the [softmax](https://en.wikipedia.org/wiki/Softmax_function) of the similarities for each input fragment, to create a probability distribution for that fragment.
 This probability distribution can be interpreted as, "the probability that this input fragment belongs to X reference archetype".
 These probabilities are returned as a matrix, whose rows are probability distributions attributed to each input fragment.
 
 ### Reduce
-The _reduce_ step takes in a probability matrix and reduces it to a single value, by tracking the behavior of the probability distribution from fragment to fragment.
+The **reduce** step takes in a probability matrix and reduces it to a single value, by tracking the behavior of the probability distribution from fragment to fragment.
 It uses [Kullback-Leibler (KL) divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) as a measure of disagreement between probability distributions of two consecutive fragments.
 The resulting sequence represents the amount of local narrative complexity over the course of the sentence.
-_Reduce_ returns the mean divergence to represent the mean narrative complexity of the sentence.
+**Reduce** returns the mean divergence to represent the mean narrative complexity of the sentence.
 
 # Developer Information
 
@@ -101,7 +101,7 @@ These steps are also replicated in the automatic pipelines declared in the `.git
 
 ## Repository Layout
 
-- `lib/`: Contains implementation for the above methodology, with top level _compare_ and _reduce functions in `lib/index.ts`.
+- `lib/`: Contains implementation for the above methodology, with top level **compare** and **reduce** functions in `lib/index.ts`.
 - `tests/`: Contains test code to validate this implementation.
 - `example/`: Contains a single larger example, validated in the `test/example.test.ts` file.
 

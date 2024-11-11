@@ -41,9 +41,6 @@ flowchart LR
     Entropy --> Out
 ```
 
-In the **compare** step, Archetypist takes in input fragments and reference fragments, representing the input description and reference archetype descriptions, respectively.
-It then uses the [Cohere embed](https://cohere.com/embed) endpoint to 
-
 ### Compare
 The **compare** step takes in input fragments and reference fragments, and evaluates their pairwise similarities using the [Cohere embed endpoint](https://cohere.com/embed).
 This endpoint returns the vector embedding of a fragment, so that the similarity of two fragments can be found by taking the cosine similarity of their respective vector embeddings.

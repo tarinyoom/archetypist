@@ -56,3 +56,37 @@ The _reduce_ step takes in a probability matrix and reduces it to a single value
 It uses [Kullback-Leibler (KL) divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) as a measure of disagreement between probability distributions of two consecutive fragments.
 The resulting sequence represents the amount of local narrative complexity over the course of the sentence.
 _Reduce_ returns the mean divergence to represent the mean narrative complexity of the sentence.
+
+# Developer Information
+
+This section contains information for developers working with this repository.
+
+## Compatibility
+
+This project was developed using the following versions:
+
+- **Node.js**: 20.17.0
+- **NPM**: 10.8.2
+- **TypeScript**: 5.6.2
+
+## Building and Running
+
+To set up the project and run tests:
+1. Install dependencies:
+```sh
+npm install
+```
+2. Run the tests:
+```sh
+npm test
+```
+
+## Repository Layout
+
+- `lib/`: folder contains implementation for the above methodology, with top level _compare_ and _reduce functions in `lib/index.ts`.
+- `tests/`: folder contains test code against this implementation.
+- `example/`: folder contains a single larger example, which is validated in the `test/example.test.ts` file.
+
+## Future Improvements
+
+For potential improvements and open issues, see the list of [ticketed issues](https://github.com/tarinyoom/archetypist/issues) in the GitHub repository.

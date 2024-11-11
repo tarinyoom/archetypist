@@ -2,7 +2,7 @@ import { getEmbeddings } from "./embed";
 import { cosineSimilarity, klDivergence, softMax } from "./statistics";
 import { pairwiseCalculate, pairwiseReduce } from "./functional";
 
-async function getFragmentProbabilities(inputFragments: string[], referenceFragments: string[]): Promise<number[][]> {
+export async function compare(inputFragments: string[], referenceFragments: string[]): Promise<number[][]> {
     const inputEmbeddings = await getEmbeddings(inputFragments);
     const referenceEmbeddings = await getEmbeddings(referenceFragments);    
 
@@ -17,17 +17,12 @@ async function getFragmentProbabilities(inputFragments: string[], referenceFragm
     return probabilities;
 }
 
-export async function getDivergenceSignal(inputFragments: string[], referenceFragments: string[]): Promise<number[]> {
-
-    const probabilities = await getFragmentProbabilities(inputFragments, referenceFragments);
+export function reduce(probabilities: number[][]): number {
 
     // Calculate divergences of each adjacent pair of input embeddings to compute divergence signal
-    const divergenceSignal = pairwiseReduce(probabilities, klDivergence);
+    const divergences = pairwiseReduce(probabilities, klDivergence);
 
-    return divergenceSignal;
-}
-
-export async function getTotalDivergence(inputFragments: string[], referenceFragments: string[]): Promise<number> {
-    const signal = await getDivergenceSignal(inputFragments, referenceFragments);
-    return signal.reduce((acc, val) => acc + val, 0) / signal.reduce((acc, _) => acc + 1, 0);
+    // Calculate mean divergence
+    return divergences.reduce((acc, val) => acc + val, 0)
+        / divergences.reduce((acc, _) => acc + 1, 0);
 }

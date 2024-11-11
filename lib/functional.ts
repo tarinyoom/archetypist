@@ -11,9 +11,6 @@ export function pairwiseReduce<T, U>(arr: T[], fn: (a: T, b: T) => U): U[] {
 }
 
 export function pairwiseCalculate<T, U>(arr1: T[], arr2: T[], fn: (a: T, b: T) => U): U[][] {
-    if (arr1.length !== arr2.length) {
-        throw new Error("Arrays must have the same length.");
-    }
 
     const result: U[][] = [];
 

@@ -74,14 +74,19 @@ describe('pairwiseCalculate', () => {
         ]);
     });
 
-    // Test: Edge case with empty arrays
-    test('throws error when arrays have different lengths', () => {
+    test('allows array inputs of different lengths', () => {
         const arr1 = [1, 2, 3];
         const arr2 = [4, 5];
 
         const sum = (a: number, b: number): number => a + b;
 
-        expect(() => pairwiseCalculate(arr1, arr2, sum)).toThrow('Arrays must have the same length.');
+        const result = pairwiseCalculate(arr1, arr2, sum);
+        
+        expect(result).toEqual([
+            [5, 6],
+            [6, 7],
+            [7, 8]
+        ]);
     });
 
     // Test: Edge case with empty arrays

@@ -53,7 +53,7 @@ describe('reduce function', () => {
             [0.25, 0.75]
         ];
         const result = reduce(probabilities);
-        expect(result).toBeCloseTo(0.0160668, 5); // Adjust based on expected result
+        expect(result).toBeCloseTo(16.066774737652825, 5); // Adjust based on expected result
     });
 
     it('should handle uniform distributions', () => {
@@ -74,7 +74,7 @@ describe('reduce function', () => {
             [0.5, 0.5]
         ];
         const result = reduce(probabilities);
-        expect(result).toBeCloseTo(0.110385, 5); // Replace with expected value if known
+        expect(result).toBeCloseTo(110.38482025825604, 5); // Replace with expected value if known
     });
 
     it('should throw an error if probabilities array has fewer than two distributions', () => {
@@ -90,6 +90,6 @@ describe('reduce function', () => {
             [0.25, 0.25, 0.5]
         ];
         const result = reduce(probabilities);
-        expect(result).toBeCloseTo(0.0765967, 5); // Adjust based on expected result
+        expect(result).toBeCloseTo(76.59673816965544, 5); // Adjust based on expected result
     });
 });

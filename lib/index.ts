@@ -22,6 +22,8 @@ export function reduce(probabilities: number[][]): number {
     const divergences = pairwiseReduce(probabilities, klDivergence);
 
     // Calculate mean divergence
-    return divergences.reduce((acc, val) => acc + val, 0)
+    const mean = divergences.reduce((acc, val) => acc + val, 0)
         / divergences.reduce((acc, _) => acc + 1, 0);
+
+    return mean * 1000; // scaling factor to improve human readability
 }

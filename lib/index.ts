@@ -3,16 +3,15 @@ import { cosineSimilarity, klDivergence, softMax } from "./statistics";
 import { pairwiseCalculate, pairwiseReduce } from "./functional";
 
 export async function compare(inputFragments: string[], referenceFragments: string[]): Promise<number[][]> {
+
     const inputEmbeddings = await getEmbeddings(inputFragments);
     const referenceEmbeddings = await getEmbeddings(referenceFragments);    
 
-    // Create a matrix of embedding similarities,
-    // with rows being input embeddings,
-    // and columns being reference embeddings
-    const similarityMatrix = pairwiseCalculate(inputEmbeddings, referenceEmbeddings, cosineSimilarity);
+    // Create a matrix of embedding similarities
+    const similarities = pairwiseCalculate(inputEmbeddings, referenceEmbeddings, cosineSimilarity);
 
     // Calculate softmax of each row to find probability distribution for each input embedding
-    const probabilities = similarityMatrix.map(softMax);
+    const probabilities = similarities.map(softMax);
 
     return probabilities;
 }

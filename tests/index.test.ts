@@ -1,4 +1,49 @@
-import { reduce } from "../lib/index";
+import { compare, reduce } from "../lib/index";
+
+describe('compare function', () => {
+    it('should return a similarity matrix for two simple sets of fragments', async () => {
+        const inputFragments = ["a seafarer", "a banker"];
+        const referenceFragments = ["a fishing town", "a desert metropolis"];
+        
+        const expected = [
+            [0.5423115468881636, 0.45768845311183637],
+            [0.4997163964310868, 0.5002836035689132]
+        ];
+
+        const result = await compare(inputFragments, referenceFragments);
+
+        result.forEach(
+            (row, i) => row.forEach(
+                (elem, j) => expect(elem).toBeCloseTo(expected[i][j], 5)));
+    });
+
+    it('should handle empty input fragments', async () => {
+        const inputFragments: string[] = [];
+        const referenceFragments = ["bird", "fish"];
+
+        const result = await compare(inputFragments, referenceFragments);
+
+        expect(result).toEqual([]); // Expect an empty array if no input fragments
+    });
+
+    it('should handle empty reference fragments', async () => {
+        const inputFragments = ["tree", "flower"];
+        const referenceFragments: string[] = [];
+
+        const result = await compare(inputFragments, referenceFragments);
+
+        expect(result).toEqual([[], []]); // Expect empty inner arrays for each input fragment
+    });
+
+    it('should handle cases where both input and reference fragments are empty', async () => {
+        const inputFragments: string[] = [];
+        const referenceFragments: string[] = [];
+
+        const result = await compare(inputFragments, referenceFragments);
+
+        expect(result).toEqual([]); // Both input and reference fragments are empty
+    });
+});
 
 describe('reduce function', () => {
     it('should return the mean KL divergence of a simple input array', () => {

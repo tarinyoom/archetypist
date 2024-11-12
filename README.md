@@ -54,6 +54,13 @@ It uses [Kullback-Leibler (KL) divergence](https://en.wikipedia.org/wiki/Kullbac
 The resulting sequence represents the amount of local narrative complexity over the course of the sentence.
 **Reduce** returns the mean divergence to represent the mean narrative complexity of the sentence.
 
+### Another Example
+A concrete example of this workflow can be found in the `example/` directory.
+This folder consists of a `reference.json` file containing reference fragments, as well as a `simpleInput.json` and `complexInput.json` containing input fragments for two different descriptions of fantasy realm locations.
+`simpleInput.json` contains a narratively simple description of an enchanted forest, whereas `complexInput.json` contains a more complex description of another location.
+The `expectedComplexity` value indicated in each input file is continuously validated in the `tests/example.test.ts` file.
+These expected complexity values match the intuition that `complexInput.json` contains a more complex narrative than `simpleInput.json`.
+
 # Developer Information
 
 This section contains information for developers working with this repository.
